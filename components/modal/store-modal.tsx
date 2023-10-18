@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
+import { useToast } from '@/components/ui/use-toast'
 import { NewStoreType, NewStoreValidator } from '@/lib/validators/StoreValidator'
 import { useStoreModal } from '@/hooks/use-store-modal'
 import { Modal } from '../ui/modal'
@@ -14,6 +15,7 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 
 export const StoreModal = () => {
+  const { toast } = useToast()
   const router = useRouter()
   const { isOpen, onClose } = useStoreModal()
   const [loading, setLoading] = useState<boolean>(false)
@@ -31,7 +33,11 @@ export const StoreModal = () => {
       const response = await axios.post('/api/stores', values)
       // router.push(`/${response.data.id}`)
     } catch (error) {
-      // toast.error('Something went wrong')
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.',
+      })
     } finally {
       setLoading(false)
     }
