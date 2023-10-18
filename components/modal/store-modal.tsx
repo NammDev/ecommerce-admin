@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
 import { useToast } from '@/components/ui/use-toast'
@@ -16,7 +15,6 @@ import { Button } from '../ui/button'
 
 export const StoreModal = () => {
   const { toast } = useToast()
-  const router = useRouter()
   const { isOpen, onClose } = useStoreModal()
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -31,7 +29,8 @@ export const StoreModal = () => {
     try {
       setLoading(true)
       const response = await axios.post('/api/stores', values)
-      // router.push(`/${response.data.id}`)
+      // completely refresh
+      window.location.assign(`/${response.data.id}`)
     } catch (error) {
       toast({
         variant: 'destructive',
