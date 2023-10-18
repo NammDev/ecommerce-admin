@@ -9,26 +9,21 @@ import { Button } from '../ui/button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
-
-const formSchema = z.object({
-  name: z.string().min(1),
-})
-
-export type formSchemaType = z.infer<typeof formSchema>
+import { NewStoreType, NewStoreValidator } from '@/lib/validators/StoreValidator'
 
 export const StoreModal = () => {
   const { isOpen, onClose } = useStoreModal()
 
   const [loading, setLoading] = useState<boolean>(false)
 
-  const form = useForm<formSchemaType>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<NewStoreType>({
+    resolver: zodResolver(NewStoreValidator),
     defaultValues: {
       name: '',
     },
   })
 
-  const onSubmit = async (values: formSchemaType) => {
+  const onSubmit = async (values: NewStoreType) => {
     console.log(values.name)
   }
 
