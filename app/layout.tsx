@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ModalProvider } from '@/providers/modal-provider'
 import { Toaster } from '@/components/ui/toaster'
+import { Toaster as ToasterHot } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ModalProvider />
           {children}
           <Toaster />
+          <ToasterHot />
         </body>
       </html>
     </ClerkProvider>
