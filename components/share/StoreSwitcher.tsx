@@ -22,7 +22,8 @@ import Link from 'next/link'
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 interface StoreSwitcherProps extends PopoverTriggerProps {
-  items: Record<string, any>[]
+  // items: Record<string, any>[]
+  items: Store[]
 }
 
 export default function StoreSwitcher({ className, items = [] }: StoreSwitcherProps) {
