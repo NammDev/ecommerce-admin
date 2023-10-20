@@ -24,6 +24,7 @@ import { Separator } from '@/components/ui/separator'
 import { NewStoreType, NewStoreValidator } from '@/lib/validators/StoreValidator'
 import { Heading } from './Heading'
 import { AlertModal } from '../modal/alert-modal'
+import { ApiAlert } from '../ui/api-alert'
 
 interface SettingsFormProps {
   initialData: Store
@@ -107,11 +108,11 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
         </form>
       </Form>
       <Separator />
-      {/* <ApiAlert
+      <ApiAlert
         title='NEXT_PUBLIC_API_URL'
         variant='public'
         description={`${origin}/api/${params.storeId}`}
-      /> */}
+      />
     </>
   )
 }
