@@ -25,6 +25,7 @@ import { NewStoreType, NewStoreValidator } from '@/lib/validators/StoreValidator
 import { Heading } from './Heading'
 import { AlertModal } from '../modal/alert-modal'
 import { ApiAlert } from '../ui/api-alert'
+import { useOrigin } from '@/hooks/use-origin'
 
 interface SettingsFormProps {
   initialData: Store
@@ -33,6 +34,7 @@ interface SettingsFormProps {
 export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
   const params = useParams()
   const router = useRouter()
+  const origin = useOrigin()
 
   const [open, setOpen] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
