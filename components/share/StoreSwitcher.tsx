@@ -2,7 +2,7 @@
 
 import { Store } from '@prisma/client'
 import { useStoreModal } from '@/hooks/use-store-modal'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Check, ChevronsUpDown, PlusCircle, Store as StoreIcon } from 'lucide-react'
 
@@ -30,6 +30,7 @@ export default function StoreSwitcher({ className, items = [] }: StoreSwitcherPr
   const storeModal = useStoreModal()
   const params = useParams()
   const router = useRouter()
+  const pathname = usePathname()
 
   const formattedItems = items.map((item) => ({
     label: item.name,
@@ -41,7 +42,9 @@ export default function StoreSwitcher({ className, items = [] }: StoreSwitcherPr
 
   const onStoreSelect = (store: { value: string; label: string }) => {
     setOpen(false)
-    router.push(`/${store.value}`)
+    const regex = new RegExp(`/${params.storeId}/`)
+    const newPathname = pathname.replace(regex, `/${store.value}/`)
+    router.push(newPathname)
   }
 
   return (
