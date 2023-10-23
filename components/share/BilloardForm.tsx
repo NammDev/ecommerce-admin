@@ -21,12 +21,10 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Separator } from '@/components/ui/separator'
-import { NewStoreType, NewStoreValidator } from '@/lib/validators/StoreValidator'
 import { Heading } from './Heading'
 import { AlertModal } from '../modal/alert-modal'
-import { ApiAlert } from '../ui/api-alert'
-import { useOrigin } from '@/hooks/use-origin'
 import { BillboardType, BillboardValidator } from '@/lib/validators/BillboardValidator'
+import ImageUpload from '../ui/image-upload'
 
 interface BilloardFormProps {
   initialData: Billboard | null
@@ -111,12 +109,12 @@ export const BilloardForm: React.FC<BilloardFormProps> = ({ initialData }) => {
               <FormItem>
                 <FormLabel>Background image</FormLabel>
                 <FormControl>
-                  {/* <ImageUpload
+                  <ImageUpload
                     value={field.value ? [field.value] : []}
                     disabled={loading}
-                    onChange={(url) => field.onChange(url)}
+                    onChange={(url: any) => field.onChange(url)}
                     onRemove={() => field.onChange('')}
-                  /> */}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
